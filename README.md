@@ -6,4 +6,4 @@ using F#. It should not be treated as production-ready code. Instead, use it as 
 for how to build a similar abstraction layer.
 
 ## Security
-This repository is actively monitored by Jet Engineers and the Jet Security team. Please monitor this repo for security updates and advisories. For more information and contacts, please see [SECURITY.md](SECURITY.md).
+This code should not be used in production and is for demo/sample purposes only. Please see [SECURITY.md](SECURITY.md) for information on reporting security concerns.
