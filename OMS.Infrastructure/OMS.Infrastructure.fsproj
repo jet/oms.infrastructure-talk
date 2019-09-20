@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="StreamDefinition.fs" />
+    <Compile Include="DomainEvent.fs" />
+    <Compile Include="Definitions.fs" />
+    <Compile Include="Logging.fs" />
+    <Compile Include="Async.fs" />
+    <Compile Include="Metrics.fs" />
+    <Compile Include="Inputs.fs" />
+    <Compile Include="Outputs.fs" />
+    <Compile Include="Service.fs" />
+    <Reference Include="netstandard" />
+  </ItemGroup>
+  <Import Project="..\.paket\Paket.Restore.targets" />
+</Project>
