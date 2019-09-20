@@ -2,10 +2,12 @@ namespace OMS.Infrastructure
 
 open System
 
+/// Specifies the versioning information for a domain event, using 
 type Versioning =
     | SequenceNumber of int64
     | ETag of string
 
+/// Describes a discrete event in the system, where the data and metadata are serialized to bytes
 type DomainEvent = {
     Id : Guid
     Name : string

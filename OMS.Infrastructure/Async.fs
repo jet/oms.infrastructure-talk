@@ -2,7 +2,7 @@ namespace OMS.Infrastructure
 
 module Backoff =
 
-    // exponentially increases the timeout until a certain upper-bound is reached
+    /// exponentially increases the timeout until a certain upper-bound is reached
     let ExponentialBoundedRandomized = ()
 
 module Async =
