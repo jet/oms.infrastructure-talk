@@ -12,12 +12,13 @@ let private sw = System.Diagnostics.Stopwatch.StartNew()
 /// The microservice implements its own specific (decode, handle, and interpret) functions. Those functions are piped
 /// into the OMS Service functions in the following order.
 /// 
-/// incomingStreamDefinitionUrl
+/// let handler = Service.processInput log "MicroServiceName" microserviceHandle microServiceInterpret
+/// 
+/// incomingStreamDefinitionUri
 /// |> Service.parse lookup
 /// |> Service.consume 
 /// |> Service.decode microserviceDecoder
-/// |> Service.process log "MicroServiceName" microserviceHandle microServiceInterpret
-/// |> Service.handle log
+/// |> Service.handle log handler
 /// |> Service.start
 
 
@@ -105,7 +106,7 @@ let handle (log:Logger) (handler:'a ->Async<unit>) (incoming:AsyncSeq<Messages<'
 
         match messages.Length with
         | x when x > 0 ->
-            // handler for a single message
+            // processing for a single message, usually the Service.processInput function
             let handleSingleMessage message = message |> (handler >> Async.Catch) |> Async.StartAsTask
             
             // The processing semantics for Batches and Bunches will depend on how in-order and out-of-order
@@ -126,7 +127,7 @@ let handle (log:Logger) (handler:'a ->Async<unit>) (incoming:AsyncSeq<Messages<'
     incoming
     |> AsyncSeq.scanAsync handleEach [||]
     
-/// Starts processing the consumers. Note that handling is done on a separate taks.
+/// Starts processing the consumers. Note that handling is done on a separate tasks.
 /// When this method returns, it does not mean that all tasks completed.
 let start f =
     f 

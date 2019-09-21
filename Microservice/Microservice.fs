@@ -52,18 +52,17 @@ let interpret (output:Output) : Async<unit> = async {
 [<EntryPoint>]
 let main argv =
 
-    // consume order processed events from event store
-    let incomingStream = 
-        "eventstore://es-host/$et-orderprocessed"
-        |> Service.parse lookup
-        |> Service.consume
-        |> Service.decode decode
-
-    // create a handler for each message
+    // process each message from event store
     let handler = Service.processInput log "MicroserviceName" handle interpret
 
-    // start handling the incoming stream
-    incomingStream
+    // As a string, this can be defined in code, or in a configuration
+    let incomingStreamUri = "eventstore://es-host/$et-orderprocessed"
+
+    // consume and handle order processed events from event store
+    incomingStreamUri
+    |> Service.parse lookup
+    |> Service.consume
+    |> Service.decode decode
     |> Service.handle log handler
     |> Service.start
 

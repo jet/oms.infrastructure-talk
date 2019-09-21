@@ -14,7 +14,7 @@ type Metric = {
     Tag : string
 }
 
-/// Given a Metric, a MetricWriter will output the appropriate metric to the its service (e.g. Splunk, Prometheus, Dynatrace, NewRelic, etc...)
+/// Metric Writers implement the details of writing metrics to collectors (e.g. Splunk, Prometheus, Dynatrace, NewRelic, etc...)
 type MetricWriter = Metric -> Async<unit>
 
 /// Collection of writers that are added during service intialization (New Relic, Prometheus, Splunk, ...)
