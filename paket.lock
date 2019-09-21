@@ -1,11 +1,6 @@
-RESTRICTION: == netstandard2.0
 NUGET
   remote: https://www.nuget.org/api/v2
     FSharp.Control.AsyncSeq (2.0.21)
-      FSharp.Core (>= 4.3.2)
+      FSharp.Core (>= 3.1.2) - restriction: >= net45
+      FSharp.Core (>= 4.3.2) - restriction: && (< net45) (>= netstandard2.0)
     FSharp.Core (4.7)
-
-GROUP Build
-NUGET
-  remote: https://www.nuget.org/api/v2
-    FAKE (5.16)

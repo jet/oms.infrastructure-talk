@@ -1,10 +1,4 @@
 source https://www.nuget.org/api/v2
 
-framework: auto-detect
 nuget FSharp.Control.AsyncSeq
 nuget FSharp.Core
-
-group Build
-source https://www.nuget.org/api/v2
-
-nuget FAKE

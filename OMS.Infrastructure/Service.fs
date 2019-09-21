@@ -78,7 +78,7 @@ let decode<'a> (decoder:DomainEvent -> 'a option) (incoming:AsyncSeq<Incoming>) 
         | Incoming.Bunch(des, close, cancel) -> des |> Array.map decoder |> Messages.OfBunch, close, cancel)
 
 /// Orchestrates the handle -> interpret business logic for the microservice
-let processInput<'a> (log:Logger) label (handle:'a -> Async<'b>) (interpret:'b -> Async<unit>) (input:'a) =
+let processInput (log:Logger) label (handle:'a -> Async<'b>) (interpret:'b -> Async<unit>) (input:'a) =
     async {
         try
             let handleStart = sw.ElapsedMilliseconds
@@ -92,7 +92,7 @@ let processInput<'a> (log:Logger) label (handle:'a -> Async<'b>) (interpret:'b -
     }
 
 /// Handles the semantics for processing of incoming messages
-let handle<'a> (log:Logger) (handler:'a ->Async<unit>) (incoming:AsyncSeq<Messages<'a option> * CloseAction * CancelAction>) =
+let handle (log:Logger) (handler:'a ->Async<unit>) (incoming:AsyncSeq<Messages<'a option> * CloseAction * CancelAction>) =
     let handleEach state (each:Messages<'a option> * CloseAction * CancelAction) = async {
         let inputs, close, cancel = each
 
