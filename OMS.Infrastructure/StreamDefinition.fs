@@ -47,4 +47,4 @@ type StreamDefinition =
         | ServiceBusQueue md -> sprintf "ServiceBusQueue=>%s" md.Name
         | ServiceBusTopic (topic, md) -> sprintf "ServiceBusTopic=>%s" topic
         | Kafka md -> sprintf "Kafka=>%s" md.Topic
-        | CosmosDB md -> sprintf "CosmosDB=%s/%s" md.DatabaseId md.CollectionId
+        | CosmosDB md -> sprintf "CosmosDB=>%s/%s" md.DatabaseId md.CollectionId

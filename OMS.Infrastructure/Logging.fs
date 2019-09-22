@@ -25,7 +25,7 @@ module Log =
         }
     
     /// Calculates the time elapsed for an async computation and logs the results
-    let logElappsed (log:Logger) id tag f =
+    let logElapsed (log:Logger) id tag f =
         async {
             let before = sw.ElapsedMilliseconds
             let! result = f

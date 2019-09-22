@@ -37,7 +37,7 @@ let writeWithSetRetries retryCount (sd:StreamDefinition) (de:DomainEvent) =
 /// Attempts to write to the data store indefinitely - Useful for when you want to enforce back pressure on errors
 let writeAlways (sd:StreamDefinition) (de:DomainEvent) =
     write sd de
-    |> Async.retryIndefinitely log
+    |> Async.retryIndefinitely log (function e -> true)
     |> Async.Catch
     |> Log.logException log sd.Identifier "Write"
     |> Metrics.recordLatency "External" sd.Identifier "Write"

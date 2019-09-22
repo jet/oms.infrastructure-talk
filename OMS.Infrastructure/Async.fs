@@ -12,6 +12,7 @@ module Async =
     // Returns the function result on success, if the attempts are not exhausted
     let retryBackoff attempts backoff f = f
 
-    // Retries a function indefinitely, logging each occurrence of an exception
-    // Returns the function result on success.
-    let retryIndefinitely log f = f
+    // Retries a function indefinitely, logging each occurrence of an exception.
+    // Returns the function result on success. Exceptions that can be retried
+    // indefinitely can be defined in the filter parameter, or () -> true for all exceptions
+    let retryIndefinitely log (filter:exn -> bool) f = f
