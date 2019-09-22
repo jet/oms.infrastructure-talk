@@ -108,6 +108,7 @@ Outputs.fs | Standard interfaces for writing to infrastructure
 Service.fs | Describes a set of interfaces for the OMS microservice patterns
 
 **Microservice**
+
 File | Description
 --- | ---
 Microservice.fs | An example microservice that consumes and processes messages from a stream
