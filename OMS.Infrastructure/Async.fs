@@ -7,7 +7,7 @@ module Backoff =
 
 module Async =
 
-    // Retries a funciton until the specified attempts are exhausted.
+    // Retries a function until the specified attempts are exhausted.
     // If the attempts are exhausted, the last exception is raised
     // Returns the function result on success, if the attempts are not exhausted
     let retryBackoff attempts backoff f = f
